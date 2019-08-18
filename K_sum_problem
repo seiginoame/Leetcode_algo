@@ -1,0 +1,35 @@
+class Solution {
+    private List<List<Integer>> solution = new ArrayList<>();
+    private List<Integer> temp = new ArrayList<>();
+    private void find(int[] nums, int start, int sum, int target){
+        if(temp.size()==4){  //change here to fit the code to different k numbers
+            if(sum==target) {
+                solution.add(new ArrayList<Integer>(temp));
+            }
+            return;
+        }
+        
+        if(start==nums.length) return;
+        
+        for(int i = start;i<nums.length;i++){
+            if(i>start&&nums[i]==nums[i-1]) continue;//this line of code avoids duplicates
+            
+            if(sum+nums[i]+(4-temp.size()-1)*nums[nums.length-1]<target
+              ||sum+nums[i] + (4-temp.size()-1)*nums[i]>target)
+                continue;  //if too small or too big, skip it
+            
+            temp.add(nums[i]);
+            find(nums,i+1,sum+nums[i],target);
+            temp.remove(temp.size()-1);
+            
+        }
+        
+    }
+    
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        Arrays.sort(nums);
+        if(nums.length>=4) find(nums,0,0,target);
+        return solution;
+        
+    }
+}

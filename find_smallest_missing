@@ -1,0 +1,28 @@
+class Solution {
+    private void swap(int[] nums, int i, int j){
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+    
+    public int firstMissingPositive(int[] nums) {
+       int i = 0, n = nums.length;
+        while(i!=n){
+            int val = nums[i];
+            if(val==i+1) i++;
+            else if(val>n
+                    ||val<1
+                    ||nums[val-1] == val
+                    ){
+                swap(nums,i,--n);
+            }else{
+                swap(nums,i,val-1);
+            }
+                
+        }
+        
+        return i+1;
+    
+    
+    }
+}

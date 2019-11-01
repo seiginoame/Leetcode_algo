@@ -1,0 +1,32 @@
+import java.io.*; 
+import java.util.*; 
+public class diagonal {
+
+    public static void main(String[] args) {
+        if(args.length>4) return;
+        int row = Integer.parseInt(args[0]);
+        int col = Integer.parseInt(args[1]);
+        int x = Integer.parseInt(args[2]);
+        int y = Integer.parseInt(args[3]);
+
+        boolean[][] matrix = new boolean[row][col];
+
+        int min = Math.min(x,y);
+        int cursor_x = x - min;
+        int cursor_y = y - min;
+        while(cursor_x>=0&&cursor_x<col&&cursor_y<row&&cursor_y>=0) matrix[cursor_x++][cursor_y++] = true;
+
+        cursor_x = x + min;
+        cursor_y = y - min;
+        while(cursor_x>=0&&cursor_x<col&&cursor_y<row&&cursor_y>=0) matrix[cursor_x--][cursor_y++] = true;
+ 
+        
+        for(boolean[] a_row : matrix){
+        	System.out.println(Arrays.toString(a_row));
+        }
+
+
+
+    }
+
+}

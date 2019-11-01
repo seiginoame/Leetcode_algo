@@ -12,15 +12,18 @@ public class diagonal {
         boolean[][] matrix = new boolean[row][col];
 
         int min = Math.min(x,y);
+        
         int cursor_x = x - min;
         int cursor_y = y - min;
-        while(cursor_x>=0&&cursor_x<col&&cursor_y<row&&cursor_y>=0) matrix[cursor_x++][cursor_y++] = true;
+        while(cursor_x>=0&&cursor_x<col&&cursor_y<row&&cursor_y>=0) matrix[cursor_y++][cursor_x++] = true;
 
+
+        min = Math.min(col-x-1,y);
         cursor_x = x + min;
         cursor_y = y - min;
-        while(cursor_x>=0&&cursor_x<col&&cursor_y<row&&cursor_y>=0) matrix[cursor_x--][cursor_y++] = true;
+        while(cursor_x>=0&&cursor_x<col&&cursor_y<row&&cursor_y>=0) matrix[cursor_y++][cursor_x--] = true;
  
-        
+
         for(boolean[] a_row : matrix){
         	System.out.println(Arrays.toString(a_row));
         }
